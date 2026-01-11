@@ -1,0 +1,14 @@
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
