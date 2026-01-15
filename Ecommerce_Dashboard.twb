@@ -1,0 +1,2553 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20253.25.1210.1815                               -->
+<workbook original-version='18.1' source-build='2025.3.1 (20253.25.1210.1815)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location id='MonthlyQuarterlyRevenueDashboard' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='olist_customers_dataset' inline='true' name='federated.0ckemwq0wqk90k190mtx20umoork' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='olist_customers_dataset' name='textscan.12l333s0xson5i1c4it7802pnamm'>
+            <connection class='textscan' directory='C:/Users/USER/Documents/Ecommerce_Analysis/data/raw' filename='olist_customers_dataset.csv' password='' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation type='collection'>
+          <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_customers_dataset.csv' table='[olist_customers_dataset#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='customer_id' ordinal='0' />
+              <column datatype='string' name='customer_unique_id' ordinal='1' />
+              <column datatype='integer' name='customer_zip_code_prefix' ordinal='2' />
+              <column datatype='string' name='customer_city' ordinal='3' />
+              <column datatype='string' name='customer_state' ordinal='4' />
+            </columns>
+          </relation>
+          <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_orders_dataset.csv' table='[olist_orders_dataset#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='order_id' ordinal='0' />
+              <column datatype='string' name='customer_id' ordinal='1' />
+              <column datatype='string' name='order_status' ordinal='2' />
+              <column datatype='datetime' name='order_purchase_timestamp' ordinal='3' />
+              <column datatype='datetime' name='order_approved_at' ordinal='4' />
+              <column datatype='datetime' name='order_delivered_carrier_date' ordinal='5' />
+              <column datatype='datetime' name='order_delivered_customer_date' ordinal='6' />
+              <column datatype='datetime' name='order_estimated_delivery_date' ordinal='7' />
+            </columns>
+          </relation>
+          <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_order_items_dataset.csv' table='[olist_order_items_dataset#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='order_id' ordinal='0' />
+              <column datatype='integer' name='order_item_id' ordinal='1' />
+              <column datatype='string' name='product_id' ordinal='2' />
+              <column datatype='string' name='seller_id' ordinal='3' />
+              <column datatype='datetime' name='shipping_limit_date' ordinal='4' />
+              <column datatype='real' name='price' ordinal='5' />
+              <column datatype='real' name='freight_value' ordinal='6' />
+            </columns>
+          </relation>
+          <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_products_dataset.csv' table='[olist_products_dataset#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='product_id' ordinal='0' />
+              <column datatype='string' name='product_category_name' ordinal='1' />
+              <column datatype='integer' name='product_name_lenght' ordinal='2' />
+              <column datatype='integer' name='product_description_lenght' ordinal='3' />
+              <column datatype='integer' name='product_photos_qty' ordinal='4' />
+              <column datatype='integer' name='product_weight_g' ordinal='5' />
+              <column datatype='integer' name='product_length_cm' ordinal='6' />
+              <column datatype='integer' name='product_height_cm' ordinal='7' />
+              <column datatype='integer' name='product_width_cm' ordinal='8' />
+            </columns>
+          </relation>
+          <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='product_category_name_translation.csv' table='[product_category_name_translation#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='product_category_name' ordinal='0' />
+              <column datatype='string' name='product_category_name_english' ordinal='1' />
+            </columns>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[customer_city]' value='[olist_customers_dataset.csv].[customer_city]' />
+          <map key='[customer_id (olist_customers_dataset.csv)]' value='[olist_customers_dataset.csv].[customer_id]' />
+          <map key='[customer_id]' value='[olist_orders_dataset.csv].[customer_id]' />
+          <map key='[customer_state]' value='[olist_customers_dataset.csv].[customer_state]' />
+          <map key='[customer_unique_id]' value='[olist_customers_dataset.csv].[customer_unique_id]' />
+          <map key='[customer_zip_code_prefix]' value='[olist_customers_dataset.csv].[customer_zip_code_prefix]' />
+          <map key='[freight_value]' value='[olist_order_items_dataset.csv].[freight_value]' />
+          <map key='[order_approved_at]' value='[olist_orders_dataset.csv].[order_approved_at]' />
+          <map key='[order_delivered_carrier_date]' value='[olist_orders_dataset.csv].[order_delivered_carrier_date]' />
+          <map key='[order_delivered_customer_date]' value='[olist_orders_dataset.csv].[order_delivered_customer_date]' />
+          <map key='[order_estimated_delivery_date]' value='[olist_orders_dataset.csv].[order_estimated_delivery_date]' />
+          <map key='[order_id (olist_orders_dataset.csv)]' value='[olist_orders_dataset.csv].[order_id]' />
+          <map key='[order_id]' value='[olist_order_items_dataset.csv].[order_id]' />
+          <map key='[order_item_id]' value='[olist_order_items_dataset.csv].[order_item_id]' />
+          <map key='[order_purchase_timestamp]' value='[olist_orders_dataset.csv].[order_purchase_timestamp]' />
+          <map key='[order_status]' value='[olist_orders_dataset.csv].[order_status]' />
+          <map key='[price]' value='[olist_order_items_dataset.csv].[price]' />
+          <map key='[product_category_name (product_category_name_translation.csv)]' value='[product_category_name_translation.csv].[product_category_name]' />
+          <map key='[product_category_name]' value='[olist_products_dataset.csv].[product_category_name]' />
+          <map key='[product_category_name_english]' value='[product_category_name_translation.csv].[product_category_name_english]' />
+          <map key='[product_description_lenght]' value='[olist_products_dataset.csv].[product_description_lenght]' />
+          <map key='[product_height_cm]' value='[olist_products_dataset.csv].[product_height_cm]' />
+          <map key='[product_id (olist_products_dataset.csv)]' value='[olist_products_dataset.csv].[product_id]' />
+          <map key='[product_id]' value='[olist_order_items_dataset.csv].[product_id]' />
+          <map key='[product_length_cm]' value='[olist_products_dataset.csv].[product_length_cm]' />
+          <map key='[product_name_lenght]' value='[olist_products_dataset.csv].[product_name_lenght]' />
+          <map key='[product_photos_qty]' value='[olist_products_dataset.csv].[product_photos_qty]' />
+          <map key='[product_weight_g]' value='[olist_products_dataset.csv].[product_weight_g]' />
+          <map key='[product_width_cm]' value='[olist_products_dataset.csv].[product_width_cm]' />
+          <map key='[seller_id]' value='[olist_order_items_dataset.csv].[seller_id]' />
+          <map key='[shipping_limit_date]' value='[olist_order_items_dataset.csv].[shipping_limit_date]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[olist_customers_dataset.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[product_category_name_translation.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_id (olist_customers_dataset.csv)]</local-name>
+            <parent-name>[olist_customers_dataset.csv]</parent-name>
+            <remote-alias>customer_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_unique_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_unique_id]</local-name>
+            <parent-name>[olist_customers_dataset.csv]</parent-name>
+            <remote-alias>customer_unique_id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_zip_code_prefix</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[customer_zip_code_prefix]</local-name>
+            <parent-name>[olist_customers_dataset.csv]</parent-name>
+            <remote-alias>customer_zip_code_prefix</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_city</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_city]</local-name>
+            <parent-name>[olist_customers_dataset.csv]</parent-name>
+            <remote-alias>customer_city</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_state</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_state]</local-name>
+            <parent-name>[olist_customers_dataset.csv]</parent-name>
+            <remote-alias>customer_state</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[order_id (olist_orders_dataset.csv)]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_id</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_id]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>customer_id</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_status</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[order_status]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_status</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_purchase_timestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[order_purchase_timestamp]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_purchase_timestamp</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_approved_at</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[order_approved_at]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_approved_at</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_delivered_carrier_date</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[order_delivered_carrier_date]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_delivered_carrier_date</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_delivered_customer_date</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[order_delivered_customer_date]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_delivered_customer_date</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_estimated_delivery_date</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[order_estimated_delivery_date]</local-name>
+            <parent-name>[olist_orders_dataset.csv]</parent-name>
+            <remote-alias>order_estimated_delivery_date</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[order_id]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>order_id</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_item_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[order_item_id]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>order_item_id</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_id]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>product_id</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>seller_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[seller_id]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>seller_id</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>shipping_limit_date</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[shipping_limit_date]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>shipping_limit_date</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>price</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[price]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>price</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>freight_value</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[freight_value]</local-name>
+            <parent-name>[olist_order_items_dataset.csv]</parent-name>
+            <remote-alias>freight_value</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_id (olist_products_dataset.csv)]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_id</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_category_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_category_name]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_category_name</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_name_lenght</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_name_lenght]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_name_lenght</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_description_lenght</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_description_lenght]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_description_lenght</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_photos_qty</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_photos_qty]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_photos_qty</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_weight_g</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_weight_g]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_weight_g</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_length_cm</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_length_cm]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_length_cm</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_height_cm</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_height_cm]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_height_cm</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_width_cm</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[product_width_cm]</local-name>
+            <parent-name>[olist_products_dataset.csv]</parent-name>
+            <remote-alias>product_width_cm</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_category_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_category_name (product_category_name_translation.csv)]</local-name>
+            <parent-name>[product_category_name_translation.csv]</parent-name>
+            <remote-alias>product_category_name</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_category_name_english</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_category_name_english]</local-name>
+            <parent-name>[product_category_name_translation.csv]</parent-name>
+            <remote-alias>product_category_name_english</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Revenue per Order' datatype='real' name='[Calculation_0247418156269568]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([price]) / COUNTD([order_id])' />
+      </column>
+      <column caption='olist_customers_dataset.csv' datatype='table' name='[__tableau_internal_object_id__].[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]' role='measure' type='quantitative' />
+      <column caption='olist_order_items_dataset.csv' datatype='table' name='[__tableau_internal_object_id__].[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]' role='measure' type='quantitative' />
+      <column caption='olist_orders_dataset.csv' datatype='table' name='[__tableau_internal_object_id__].[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]' role='measure' type='quantitative' />
+      <column caption='olist_products_dataset.csv' datatype='table' name='[__tableau_internal_object_id__].[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]' role='measure' type='quantitative' />
+      <column caption='product_category_name_translation.csv' datatype='table' name='[__tableau_internal_object_id__].[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]' role='measure' type='quantitative' />
+      <column caption='Customer City' datatype='string' name='[customer_city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column caption='Customer Id (Olist Customers Dataset.Csv)' datatype='string' name='[customer_id (olist_customers_dataset.csv)]' role='dimension' type='nominal' />
+      <column caption='Customer Id' datatype='string' name='[customer_id]' role='dimension' type='nominal' />
+      <column caption='Customer State' datatype='string' name='[customer_state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Customer Unique Id' datatype='string' name='[customer_unique_id]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Customer Zip Code Prefix' datatype='integer' default-format='*00000' name='[customer_zip_code_prefix]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+      <column caption='Freight Value' datatype='real' name='[freight_value]' role='measure' type='quantitative' />
+      <column caption='Order Approved At' datatype='datetime' name='[order_approved_at]' role='dimension' type='ordinal' />
+      <column caption='Order Delivered Carrier Date' datatype='datetime' name='[order_delivered_carrier_date]' role='dimension' type='ordinal' />
+      <column caption='Order Delivered Customer Date' datatype='datetime' name='[order_delivered_customer_date]' role='dimension' type='ordinal' />
+      <column caption='Order Estimated Delivery Date' datatype='datetime' name='[order_estimated_delivery_date]' role='dimension' type='ordinal' />
+      <column caption='Order Id (Olist Orders Dataset.Csv)' datatype='string' name='[order_id (olist_orders_dataset.csv)]' role='dimension' type='nominal' />
+      <column caption='Order Id' datatype='string' name='[order_id]' role='dimension' type='nominal' />
+      <column caption='Order Item Id' datatype='integer' name='[order_item_id]' role='dimension' type='ordinal' />
+      <column caption='Order Purchase Timestamp' datatype='datetime' name='[order_purchase_timestamp]' role='dimension' type='ordinal' />
+      <column caption='Order Status' datatype='string' name='[order_status]' role='dimension' type='nominal' />
+      <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+      <column caption='Product Category Name (Product Category Name Translation.Csv)' datatype='string' name='[product_category_name (product_category_name_translation.csv)]' role='dimension' type='nominal' />
+      <column caption='Product Category Name' datatype='string' name='[product_category_name]' role='dimension' type='nominal' />
+      <column caption='Product Category Name English' datatype='string' name='[product_category_name_english]' role='dimension' type='nominal' />
+      <column caption='Product Description Lenght' datatype='integer' name='[product_description_lenght]' role='measure' type='quantitative' />
+      <column caption='Product Height Cm' datatype='integer' name='[product_height_cm]' role='measure' type='quantitative' />
+      <column caption='Product Id (Olist Products Dataset.Csv)' datatype='string' name='[product_id (olist_products_dataset.csv)]' role='dimension' type='nominal' />
+      <column caption='Product Id' datatype='string' name='[product_id]' role='dimension' type='nominal' />
+      <column caption='Product Length Cm' datatype='integer' name='[product_length_cm]' role='measure' type='quantitative' />
+      <column caption='Product Name Lenght' datatype='integer' name='[product_name_lenght]' role='measure' type='quantitative' />
+      <column caption='Product Photos Qty' datatype='integer' name='[product_photos_qty]' role='measure' type='quantitative' />
+      <column caption='Product Weight G' datatype='integer' name='[product_weight_g]' role='measure' type='quantitative' />
+      <column caption='Product Width Cm' datatype='integer' name='[product_width_cm]' role='measure' type='quantitative' />
+      <column caption='Seller Id' datatype='string' name='[seller_id]' role='dimension' type='nominal' />
+      <column caption='Shipping Limit Date' datatype='datetime' name='[shipping_limit_date]' role='dimension' type='ordinal' />
+      <group caption='Top 10 States by Revenue' name='[Top 10 States by Revenue]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+          <groupfilter direction='DESC' expression='SUM([price])' function='order' user:ui-marker='order'>
+            <groupfilter function='level-members' level='[customer_state]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </groupfilter>
+        </groupfilter>
+      </group>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='C:/Users/USER/AppData/Local/Temp/TableauTemp/#TableauTemp_1kn838o1rxcwh11320xm60o20wus.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/15/2026 05:21:41 AM' username='tableau_internal_user'>
+          <relation type='collection'>
+            <relation name='olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F' table='[Extract].[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]' type='table' />
+            <relation name='olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1' table='[Extract].[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]' type='table' />
+            <relation name='olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08' table='[Extract].[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]' type='table' />
+            <relation name='olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96' table='[Extract].[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]' type='table' />
+            <relation name='product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D' table='[Extract].[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]' type='table' />
+          </relation>
+          <cols>
+            <map key='[customer_city]' value='[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F].[customer_city]' />
+            <map key='[customer_id (olist_customers_dataset.csv)]' value='[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F].[customer_id]' />
+            <map key='[customer_id]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[customer_id]' />
+            <map key='[customer_state]' value='[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F].[customer_state]' />
+            <map key='[customer_unique_id]' value='[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F].[customer_unique_id]' />
+            <map key='[customer_zip_code_prefix]' value='[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F].[customer_zip_code_prefix]' />
+            <map key='[freight_value]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[freight_value]' />
+            <map key='[order_approved_at]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_approved_at]' />
+            <map key='[order_delivered_carrier_date]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_delivered_carrier_date]' />
+            <map key='[order_delivered_customer_date]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_delivered_customer_date]' />
+            <map key='[order_estimated_delivery_date]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_estimated_delivery_date]' />
+            <map key='[order_id (olist_orders_dataset.csv)]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_id]' />
+            <map key='[order_id]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[order_id]' />
+            <map key='[order_item_id]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[order_item_id]' />
+            <map key='[order_purchase_timestamp]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_purchase_timestamp]' />
+            <map key='[order_status]' value='[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1].[order_status]' />
+            <map key='[price]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[price]' />
+            <map key='[product_category_name (product_category_name_translation.csv)]' value='[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D].[product_category_name]' />
+            <map key='[product_category_name]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_category_name]' />
+            <map key='[product_category_name_english]' value='[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D].[product_category_name_english]' />
+            <map key='[product_description_lenght]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_description_lenght]' />
+            <map key='[product_height_cm]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_height_cm]' />
+            <map key='[product_id (olist_products_dataset.csv)]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_id]' />
+            <map key='[product_id]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[product_id]' />
+            <map key='[product_length_cm]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_length_cm]' />
+            <map key='[product_name_lenght]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_name_lenght]' />
+            <map key='[product_photos_qty]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_photos_qty]' />
+            <map key='[product_weight_g]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_weight_g]' />
+            <map key='[product_width_cm]' value='[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96].[product_width_cm]' />
+            <map key='[seller_id]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[seller_id]' />
+            <map key='[shipping_limit_date]' value='[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08].[shipping_limit_date]' />
+          </cols>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>customer_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_id (olist_customers_dataset.csv)]</local-name>
+              <parent-name>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</parent-name>
+              <remote-alias>customer_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>olist_customers_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>99441</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_unique_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_unique_id]</local-name>
+              <parent-name>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</parent-name>
+              <remote-alias>customer_unique_id</remote-alias>
+              <ordinal>1</ordinal>
+              <family>olist_customers_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>99441</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_zip_code_prefix</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[customer_zip_code_prefix]</local-name>
+              <parent-name>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</parent-name>
+              <remote-alias>customer_zip_code_prefix</remote-alias>
+              <ordinal>2</ordinal>
+              <family>olist_customers_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>18917</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_city</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_city]</local-name>
+              <parent-name>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</parent-name>
+              <remote-alias>customer_city</remote-alias>
+              <ordinal>3</ordinal>
+              <family>olist_customers_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2927</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_state</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_state]</local-name>
+              <parent-name>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</parent-name>
+              <remote-alias>customer_state</remote-alias>
+              <ordinal>4</ordinal>
+              <family>olist_customers_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>39</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[order_id (olist_orders_dataset.csv)]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_id</remote-alias>
+              <ordinal>5</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>99441</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_id]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>customer_id</remote-alias>
+              <ordinal>6</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>99441</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_status</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[order_status]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_status</remote-alias>
+              <ordinal>7</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_purchase_timestamp</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[order_purchase_timestamp]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_purchase_timestamp</remote-alias>
+              <ordinal>8</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>99441</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_approved_at</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[order_approved_at]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_approved_at</remote-alias>
+              <ordinal>9</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>99441</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_delivered_carrier_date</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[order_delivered_carrier_date]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_delivered_carrier_date</remote-alias>
+              <ordinal>10</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>67476</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_delivered_customer_date</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[order_delivered_customer_date]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_delivered_customer_date</remote-alias>
+              <ordinal>11</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>87606</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_estimated_delivery_date</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[order_estimated_delivery_date]</local-name>
+              <parent-name>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</parent-name>
+              <remote-alias>order_estimated_delivery_date</remote-alias>
+              <ordinal>12</ordinal>
+              <family>olist_orders_dataset.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>1145</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[order_id]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>order_id</remote-alias>
+              <ordinal>13</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>112650</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>order_item_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[order_item_id]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>order_item_id</remote-alias>
+              <ordinal>14</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>13</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_id]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>product_id</remote-alias>
+              <ordinal>15</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>21294</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>seller_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[seller_id]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>seller_id</remote-alias>
+              <ordinal>16</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4032</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>shipping_limit_date</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[shipping_limit_date]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>shipping_limit_date</remote-alias>
+              <ordinal>17</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>112650</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>price</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[price]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>price</remote-alias>
+              <ordinal>18</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3824</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>freight_value</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[freight_value]</local-name>
+              <parent-name>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</parent-name>
+              <remote-alias>freight_value</remote-alias>
+              <ordinal>19</ordinal>
+              <family>olist_order_items_dataset.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>7006</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_id (olist_products_dataset.csv)]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_id</remote-alias>
+              <ordinal>20</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>32951</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_category_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_category_name]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_category_name</remote-alias>
+              <ordinal>21</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>123</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_name_lenght</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_name_lenght]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_name_lenght</remote-alias>
+              <ordinal>22</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>62</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_description_lenght</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_description_lenght]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_description_lenght</remote-alias>
+              <ordinal>23</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3340</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_photos_qty</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_photos_qty]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_photos_qty</remote-alias>
+              <ordinal>24</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>20</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_weight_g</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_weight_g]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_weight_g</remote-alias>
+              <ordinal>25</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1384</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_length_cm</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_length_cm]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_length_cm</remote-alias>
+              <ordinal>26</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>146</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_height_cm</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_height_cm]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_height_cm</remote-alias>
+              <ordinal>27</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>114</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_width_cm</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_width_cm]</local-name>
+              <parent-name>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</parent-name>
+              <remote-alias>product_width_cm</remote-alias>
+              <ordinal>28</ordinal>
+              <family>olist_products_dataset.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>104</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_category_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_category_name (product_category_name_translation.csv)]</local-name>
+              <parent-name>[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]</parent-name>
+              <remote-alias>product_category_name</remote-alias>
+              <ordinal>29</ordinal>
+              <family>product_category_name_translation.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>71</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_category_name_english</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_category_name_english]</local-name>
+              <parent-name>[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]</parent-name>
+              <remote-alias>product_category_name_english</remote-alias>
+              <ordinal>30</ordinal>
+              <family>product_category_name_translation.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>71</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='customer_id (olist_customers_dataset.csv)' />
+        <field-sort-custom-order field='customer_unique_id' />
+        <field-sort-custom-order field='customer_zip_code_prefix' />
+        <field-sort-custom-order field='customer_city' />
+        <field-sort-custom-order field='customer_state' />
+      </field-sort-info>
+      <object-graph>
+        <objects>
+          <object caption='olist_customers_dataset.csv' id='olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F'>
+            <properties context=''>
+              <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_customers_dataset.csv' table='[olist_customers_dataset#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='customer_id' ordinal='0' />
+                  <column datatype='string' name='customer_unique_id' ordinal='1' />
+                  <column datatype='integer' name='customer_zip_code_prefix' ordinal='2' />
+                  <column datatype='string' name='customer_city' ordinal='3' />
+                  <column datatype='string' name='customer_state' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F' table='[Extract].[olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F]' type='table' />
+            </properties>
+          </object>
+          <object caption='olist_order_items_dataset.csv' id='olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08'>
+            <properties context=''>
+              <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_order_items_dataset.csv' table='[olist_order_items_dataset#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='order_id' ordinal='0' />
+                  <column datatype='integer' name='order_item_id' ordinal='1' />
+                  <column datatype='string' name='product_id' ordinal='2' />
+                  <column datatype='string' name='seller_id' ordinal='3' />
+                  <column datatype='datetime' name='shipping_limit_date' ordinal='4' />
+                  <column datatype='real' name='price' ordinal='5' />
+                  <column datatype='real' name='freight_value' ordinal='6' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08' table='[Extract].[olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08]' type='table' />
+            </properties>
+          </object>
+          <object caption='olist_orders_dataset.csv' id='olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1'>
+            <properties context=''>
+              <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_orders_dataset.csv' table='[olist_orders_dataset#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='order_id' ordinal='0' />
+                  <column datatype='string' name='customer_id' ordinal='1' />
+                  <column datatype='string' name='order_status' ordinal='2' />
+                  <column datatype='datetime' name='order_purchase_timestamp' ordinal='3' />
+                  <column datatype='datetime' name='order_approved_at' ordinal='4' />
+                  <column datatype='datetime' name='order_delivered_carrier_date' ordinal='5' />
+                  <column datatype='datetime' name='order_delivered_customer_date' ordinal='6' />
+                  <column datatype='datetime' name='order_estimated_delivery_date' ordinal='7' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1' table='[Extract].[olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1]' type='table' />
+            </properties>
+          </object>
+          <object caption='olist_products_dataset.csv' id='olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96'>
+            <properties context=''>
+              <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='olist_products_dataset.csv' table='[olist_products_dataset#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='product_id' ordinal='0' />
+                  <column datatype='string' name='product_category_name' ordinal='1' />
+                  <column datatype='integer' name='product_name_lenght' ordinal='2' />
+                  <column datatype='integer' name='product_description_lenght' ordinal='3' />
+                  <column datatype='integer' name='product_photos_qty' ordinal='4' />
+                  <column datatype='integer' name='product_weight_g' ordinal='5' />
+                  <column datatype='integer' name='product_length_cm' ordinal='6' />
+                  <column datatype='integer' name='product_height_cm' ordinal='7' />
+                  <column datatype='integer' name='product_width_cm' ordinal='8' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96' table='[Extract].[olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96]' type='table' />
+            </properties>
+          </object>
+          <object caption='product_category_name_translation.csv' id='product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D'>
+            <properties context=''>
+              <relation connection='textscan.12l333s0xson5i1c4it7802pnamm' name='product_category_name_translation.csv' table='[product_category_name_translation#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='product_category_name' ordinal='0' />
+                  <column datatype='string' name='product_category_name_english' ordinal='1' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D' table='[Extract].[product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[order_id (olist_orders_dataset.csv)]' />
+              <expression op='[order_id]' />
+            </expression>
+            <first-end-point object-id='olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1' />
+            <second-end-point object-id='olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[customer_id (olist_customers_dataset.csv)]' />
+              <expression op='[customer_id]' />
+            </expression>
+            <first-end-point object-id='olist_customers_dataset.csv_4AAA4E2523DD434CA312E9C5A94C868F' />
+            <second-end-point object-id='olist_orders_dataset.csv_1B97575D6F3B47DAA8F9B76161C912A1' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[product_id]' />
+              <expression op='[product_id (olist_products_dataset.csv)]' />
+            </expression>
+            <first-end-point object-id='olist_order_items_dataset.csv_793A97B8429440FDADA8A6A105927D08' />
+            <second-end-point object-id='olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[product_category_name]' />
+              <expression op='[product_category_name (product_category_name_translation.csv)]' />
+            </expression>
+            <first-end-point object-id='olist_products_dataset.csv_6C8321EAB2B24854AC3EFB8743B1EB96' />
+            <second-end-point object-id='product_category_name_translation.csv_8071DA626E4544D8A5925D3B9259421D' />
+          </relationship>
+        </relationships>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Monthly Revenue'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+            <column caption='Order Purchase Timestamp' datatype='datetime' name='[order_purchase_timestamp]' role='dimension' type='ordinal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[price]' derivation='Sum' name='[sum:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[order_purchase_timestamp]' derivation='Month-Trunc' name='[tmn:order_purchase_timestamp:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[order_purchase_timestamp]' derivation='Year' name='[yr:order_purchase_timestamp:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ckemwq0wqk90k190mtx20umoork].[sum:price:qk]</rows>
+        <cols>[federated.0ckemwq0wqk90k190mtx20umoork].[tmn:order_purchase_timestamp:ok]</cols>
+      </table>
+      <simple-id uuid='{1DB24540-1871-472F-A24D-A625F6CECEFB}' />
+    </worksheet>
+    <worksheet name='Quarterly Revenue'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+            <column caption='Order Purchase Timestamp' datatype='datetime' name='[order_purchase_timestamp]' role='dimension' type='ordinal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[order_purchase_timestamp]' derivation='Quarter' name='[qr:order_purchase_timestamp:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[price]' derivation='Sum' name='[sum:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[order_purchase_timestamp]' derivation='Year' name='[yr:order_purchase_timestamp:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0ckemwq0wqk90k190mtx20umoork].[sum:price:qk]</rows>
+        <cols>([federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok] / [federated.0ckemwq0wqk90k190mtx20umoork].[qr:order_purchase_timestamp:ok])</cols>
+      </table>
+      <simple-id uuid='{E75F1FAC-0FD3-4600-A54A-E4CCE30D3C01}' />
+    </worksheet>
+    <worksheet name='Top 5 Categories by Revenue'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+            <column-instance column='[product_category_name_english]' derivation='None' name='[none:product_category_name_english:nk]' pivot='key' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Product Category Name English' datatype='string' name='[product_category_name_english]' role='dimension' type='nominal' />
+            <column-instance column='[price]' derivation='Sum' name='[sum:price:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='SUM([price])' function='order' user:ui-marker='order'>
+                <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='%null%' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;agro_industry_and_commerce&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;air_conditioning&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;art&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;arts_and_craftmanship&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;audio&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;auto&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;baby&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;bed_bath_table&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;books_general_interest&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;books_imported&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;books_technical&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;cds_dvds_musicals&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;christmas_supplies&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;cine_photo&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;computers&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;computers_accessories&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;consoles_games&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;construction_tools_construction&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;construction_tools_lights&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;construction_tools_safety&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;cool_stuff&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;costruction_tools_garden&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;costruction_tools_tools&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;diapers_and_hygiene&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;drinks&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;dvds_blu_ray&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;electronics&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashio_female_clothing&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashion_bags_accessories&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashion_childrens_clothes&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashion_male_clothing&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashion_shoes&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashion_sport&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fashion_underwear_beach&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;fixed_telephony&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;flowers&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;food&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;food_drink&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;furniture_bedroom&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;furniture_decor&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;furniture_living_room&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;furniture_mattress_and_upholstery&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;garden_tools&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;health_beauty&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;home_appliances&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;home_appliances_2&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;home_comfort_2&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;home_confort&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;home_construction&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;housewares&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;industry_commerce_and_business&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;kitchen_dining_laundry_garden_furniture&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;la_cuisine&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;luggage_accessories&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;market_place&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;music&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;musical_instruments&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;office_furniture&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;party_supplies&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;perfumery&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;pet_shop&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;security_and_services&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;signaling_and_security&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;small_appliances&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;small_appliances_home_oven_and_coffee&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;sports_leisure&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;stationery&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;tablets_printing_image&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;telephony&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;toys&quot;' />
+                  <groupfilter function='member' level='[none:product_category_name_english:nk]' member='&quot;watches_gifts&quot;' />
+                </groupfilter>
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]' direction='DESC' using='[federated.0ckemwq0wqk90k190mtx20umoork].[sum:price:qk]' />
+          <slices>
+            <column>[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0ckemwq0wqk90k190mtx20umoork].[sum:price:qk]</rows>
+        <cols>[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]</cols>
+      </table>
+      <simple-id uuid='{74476594-9D80-441E-A3F4-7FCD4E85817D}' />
+    </worksheet>
+    <worksheet name='Top 5 Ordered Product Category (Top 10 States)'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+            <column-instance column='[order_id]' derivation='CountD' name='[ctd:order_id:qk]' pivot='key' type='quantitative' />
+            <column caption='Customer State' datatype='string' name='[customer_state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[product_category_name_english]' derivation='None' name='[none:product_category_name_english:nk]' pivot='key' type='nominal' />
+            <column caption='Order Id' datatype='string' name='[order_id]' role='dimension' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Product Category Name English' datatype='string' name='[product_category_name_english]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ckemwq0wqk90k190mtx20umoork].[Top 10 States by Revenue]' />
+          <filter class='categorical' column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='COUNTD([order_id])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:product_category_name_english:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]' direction='DESC' using='[federated.0ckemwq0wqk90k190mtx20umoork].[ctd:order_id:qk]' />
+          <slices>
+            <column>[federated.0ckemwq0wqk90k190mtx20umoork].[Top 10 States by Revenue]</column>
+            <column>[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0ckemwq0wqk90k190mtx20umoork].[ctd:order_id:qk]</rows>
+        <cols>[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]</cols>
+      </table>
+      <simple-id uuid='{42B0AD61-37D7-49E2-9B9B-13701271E0DD}' />
+    </worksheet>
+    <worksheet name='Top 5 Revenue by States'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Top  5 Revenue by States</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+            <column caption='Customer State' datatype='string' name='[customer_state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[customer_state]' derivation='None' name='[none:customer_state:nk]' pivot='key' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[price]' derivation='Sum' name='[sum:price:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='SUM([price])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:customer_state:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]' direction='DESC' using='[federated.0ckemwq0wqk90k190mtx20umoork].[sum:price:qk]' />
+          <slices>
+            <column>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ckemwq0wqk90k190mtx20umoork].[sum:price:qk]</rows>
+        <cols>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</cols>
+      </table>
+      <simple-id uuid='{8EB85693-EEB9-4FF9-A669-DB68D46CB69E}' />
+    </worksheet>
+    <worksheet name='Top 5 Revenue/Order by State'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+            <column caption='Revenue per Order' datatype='real' name='[Calculation_0247418156269568]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([price]) / COUNTD([order_id])' />
+            </column>
+            <column caption='Customer State' datatype='string' name='[customer_state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[customer_state]' derivation='None' name='[none:customer_state:nk]' pivot='key' type='nominal' />
+            <column caption='Order Id' datatype='string' name='[order_id]' role='dimension' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_0247418156269568]' derivation='User' name='[usr:Calculation_0247418156269568:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='[Calculation_0247418156269568]' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:customer_state:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]' direction='DESC' using='[federated.0ckemwq0wqk90k190mtx20umoork].[usr:Calculation_0247418156269568:qk]' />
+          <slices>
+            <column>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ckemwq0wqk90k190mtx20umoork].[usr:Calculation_0247418156269568:qk]</rows>
+        <cols>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</cols>
+      </table>
+      <simple-id uuid='{FA297E5C-8239-4EE9-8021-D650B038F5F8}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Dashboard 3'>
+      <style />
+      <size maxheight='800' maxwidth='1200' minheight='800' minwidth='1200' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='olist_customers_dataset' name='federated.0ckemwq0wqk90k190mtx20umoork' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ckemwq0wqk90k190mtx20umoork'>
+        <column-instance column='[product_category_name_english]' derivation='None' name='[none:product_category_name_english:nk]' pivot='key' type='nominal' />
+        <column caption='Product Category Name English' datatype='string' name='[product_category_name_english]' role='dimension' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98666' x='667' y='1000'>
+            <zone h='98000' id='5' type-v2='layout-basic' w='85333' x='667' y='1000'>
+              <zone h='98000' id='3' name='Top 5 Categories by Revenue' w='42667' x='43333' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='98000' id='9' name='Top 5 Ordered Product Category (Top 10 States)' w='42666' x='667' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone fixed-size='160' h='98000' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='13333' x='86000' y='1000'>
+              <zone h='98000' id='8' name='Top 5 Categories by Revenue' param='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]' type-v2='filter' w='13333' x='86000' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='13' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='12' param='vert' type-v2='layout-flow' w='98666' x='667' y='1000'>
+                <zone fixed-size='280' h='98000' id='9' is-fixed='true' name='Top 5 Ordered Product Category (Top 10 States)' w='42666' x='667' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='98000' id='8' mode='checkdropdown' name='Top 5 Categories by Revenue' param='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]' type-v2='filter' w='13333' x='86000' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Top 5 Categories by Revenue' w='42667' x='43333' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{04243AE4-11B7-4239-B403-DC4F9D951BE7}' />
+    </dashboard>
+    <dashboard enable-sort-zone-taborder='true' name='Monthly/Quarterly Revenue'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Monthly and Quarterly Revenue Trends</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style />
+      <size maxheight='800' maxwidth='1200' minheight='800' minwidth='1200' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='8' param='vert' type-v2='layout-flow' w='98666' x='667' y='1000'>
+            <zone h='6250' id='9' type-v2='title' w='98666' x='667' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='91750' id='6' type-v2='layout-basic' w='98666' x='667' y='7250'>
+              <zone h='45875' id='3' name='Monthly Revenue' w='98666' x='667' y='7250'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='45875' id='5' name='Quarterly Revenue' w='98666' x='667' y='53125'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <layout-options>
+            <title>
+              <formatted-text>
+                <run>Monthly and Quarterly Revenue Trends</run>
+              </formatted-text>
+            </title>
+          </layout-options>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='15' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='14' param='vert' type-v2='layout-flow' w='98666' x='667' y='1000'>
+                <zone h='6250' id='9' type-v2='title' w='98666' x='667' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='45875' id='3' is-fixed='true' name='Monthly Revenue' w='98666' x='667' y='7250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='45875' id='5' is-fixed='true' name='Quarterly Revenue' w='98666' x='667' y='53125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{910BEB39-A7CB-4551-BA5A-EE7D111367B2}' />
+    </dashboard>
+    <dashboard enable-sort-zone-taborder='true' name='Top 5 States'>
+      <style />
+      <size maxheight='800' maxwidth='1200' minheight='800' minwidth='1200' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='3' name='Top 5 Revenue by States' w='49333' x='667' y='1000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='98000' id='5' name='Top 5 Revenue/Order by State' w='49333' x='50000' y='1000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='9' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='8' param='vert' type-v2='layout-flow' w='98666' x='667' y='1000'>
+                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Top 5 Revenue by States' w='49333' x='667' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='98000' id='5' is-fixed='true' name='Top 5 Revenue/Order by State' w='49333' x='50000' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{C9009A09-CEFA-480B-B2DC-5DCCC6E56509}' />
+    </dashboard>
+  </dashboards>
+  <windows saved-dpi-scale-factor='1.25' source-height='37'>
+    <window class='dashboard' name='Monthly/Quarterly Revenue'>
+      <viewpoints>
+        <viewpoint name='Monthly Revenue'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Quarterly Revenue'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='5' />
+      <simple-id uuid='{6FF1EC88-34C8-4C47-AB3A-0B91BE47999A}' />
+    </window>
+    <window class='dashboard' name='Top 5 States'>
+      <viewpoints>
+        <viewpoint name='Top 5 Revenue by States'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Top 5 Revenue/Order by State'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='3' />
+      <simple-id uuid='{ADBD407A-8087-4A9E-8C7F-99C278F3A72B}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 3'>
+      <viewpoints>
+        <viewpoint name='Top 5 Categories by Revenue'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Top 5 Ordered Product Category (Top 10 States)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{CB49629F-AA0D-4356-86C9-0978CDB5374B}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Monthly Revenue'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[tmn:order_purchase_timestamp:ok]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{AA65CA2B-D53D-4A9F-87C7-B0523D39975C}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Quarterly Revenue'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[qr:order_purchase_timestamp:ok]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[yr:order_purchase_timestamp:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{08FA5396-6405-4D47-B113-713FE05710B7}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Top 5 Categories by Revenue'>
+      <cards>
+        <edge name='left'>
+          <strip size='192'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='36'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='192'>
+            <card param='[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:order_id:nk]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:order_item_id:ok]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{C037464A-DC2A-4F6C-B6E5-90B45C487DAA}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Top 5 Ordered Product Category (Top 10 States)'>
+      <cards>
+        <edge name='left'>
+          <strip size='192'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='36'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[Top 10 States by Revenue]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:order_id (olist_orders_dataset.csv):nk]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:order_id:nk]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:order_item_id:ok]</field>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:product_category_name_english:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{FCC2FC0F-929B-4425-8794-FE92AA80E73F}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Top 5 Revenue by States'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{ADC09BCA-4A76-4E0D-A0F2-EEBC4424135D}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Top 5 Revenue/Order by State'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ckemwq0wqk90k190mtx20umoork].[none:customer_state:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{D5EF1859-A2FE-4E34-892C-5FADDB2B42F7}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Dashboard 3' width='192'>
+      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
+      jPkvAOWI1KcezXsAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Monthly/Quarterly Revenue' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAABJ0AAASdAHeZh94
+      AAAgAElEQVR4nO2dWXRcx3nnf/f2vgBoAI3GwgZAEOAGUtRCcZNFbabkyJZt2ZEoyfEyOZmc
+      4+N5mrc5eRmfmcxk8jAnLzOe5CSx44xjO2M7Fi3Zkq2Fq7iLFHcsxL50Aw00ekHvfW/NA0gQ
+      JIFuNNkASHT9zsEB0PffVXWr6ru3lq+qFCGEQCIpUdSVToBEspJIA5CUNNIAJCWNNABJSXOX
+      Aei6RlbTbn0gBJlM9p4CHxgYuOOTNAMDvnsKaz6Gh4dv+19LJ7l65QrTiXTR4liIyISPqdjC
+      8eiaRiaTIZu9t7y7L4Qgk8nM+bm/NNyZz6uJuwzgxHs/5T//zY9m/+8+8yHf/Yu/WnSABz/+
+      aPbvI8eO3XE1zrEj5wpP5QKcPnly9u9EyMf//rsfMR2P868/+j90DE/eU5hz05+L4c5z9I7H
+      F7z+3k//ngMfHOZ37xzgb//p5yzrUFsmzuHDh/m7v/mv/OJ3hzlx9sJ9BXfq1KkiJezBwzjf
+      h0+s89A1FmNDrYNzPRM889g6AEZ7r/DBsXOoRjNf/fofExvp4NjFXrKJCJUNbTy2rpqPPv6Y
+      ZCrNlsd3oqdjvPP2rwgGQ+z8/JfZ3GwGwNd7mWnLGtavqaTz/CncG7dTbTcSD47yzgdHSadT
+      PPHUPra0uvjlTw6gmw3E0irf/uZrpCMTHHjnPVSzjenUrTR/8N4fePPP/hyP3ciOJ7byw5/8
+      mk2vf4HTvSF2bm3l/OkzbN25g45Pj3Olqx9NsfD1177OaMcZlLI6Dh46zo5tLbPp3/v5l+k8
+      c5Ce4XFc9Wt56ZldnDl9GrMeZyxjx3vj0fHJ0SPs3vsMBuD48eM89dRTs1n79Av7qLPCgR//
+      mLAOycFrHDx1GTDyx6+9yqenT7Jnzx5A4/Sp82xrX8uBdz9A0wWff+Vr2OKj/O7YRZRsAktl
+      A6/+0XOcPnOanTt2MjnYSchUzxpn+rbv1FbYwOxg37592FI+Gj63jxYX+HouE1bKOHnwEK99
+      51uceO/XBOMZ2rY8yfatbbz7y58Q181EY2n+5NvfRE1O8faB3yKMFiIJDaGlePuXvyKhK7Q/
+      tovHNq9bmhq5zMzbB3j8c3u5cOITRHYa1VIxK/r94VN8+9vfYv+Xn+Wdd//AlH+A+k07eOsb
+      3yQ6Nkhd03o2b97Eyy+/TFNdNSgGXnrla3zn332NT4+enQ2/dk0jB//wPgCnLnVSZZ+xQ6ur
+      jv37X+fNN9/kzLEPgTShhIn9+/fTWq4TSMKBA7/hlde+wf7XX8NlvZXmybTAcyMcxWDDKLKQ
+      jtA54Aegp7MLDdjy+G5e37+fve3VHDvfi3+gk/eOXOA733qDbY/vmk2/PTPGVV+K/W+8gR7o
+      Ziymc+rw+0QMbl7au3M23irDNMcuDpKJ+hnwR+fkosa50yc5+OH7+LBSocIfjpzhzTde5+U9
+      rbx35AKhkV4C8Sy+a6eIGqv43W/f54t/vJ+39n+V3//2d8Sn/DjrN/HGW98gHR0DoLOrG4BI
+      YBj/VPyu7yzElH+AX793hDe/8y0mrxzB2Pgkb7zxJpfPHQdgLJRg//797Gwtpy+Q5DdvH+Cl
+      r73BG/tfp8ppIubvIlHWwjfeeottG9fmrFQPE/O+ARRLJWTCXDtznC27n+bTg+8AYDGbUQBL
+      WS1KegpwYbPaADAY7rYl1WTFYlQBFWXOfJtqqaDalMTv78devRblxue9F09xonOUFm890eRM
+      u/VW+IaZtJnLcFoMd8XlVATRrKDMqIDIos+Geju//befothrsKbHSdd4sANf/PKXMd6R/Nik
+      j7FAgKNHj6JYy9EyGSrrWtm7Y+ttus17XuT4D38KQw6efuHLc3MRj8fNJ++d4Jt//j0UIDg+
+      zLGjR4EsDVVr2LrtKd47chpCg7zyxlP85Oy7fHZqpkI2NnmBLDbbjJWrhrvvGSAUDt7xnYV5
+      6YtfxmpU8fl8BDSFo9FBKlweNMB6Ix6DwYAAdKMdl810K3/XbGV974f89F9+wpq2bTy7a1vO
+      uB4WFhwF2tbk4lef+tjcUD77mZJJMDQ+xeWTH1DVOH8GKFqK0bEJotMLt48BXv6jZ/mr//6/
+      eOa5p2Y/673ex869z+GpsJDK6PN+z6RFudY/Ss+1C4TnNIFeeH43//fHPycSneb9X/0L7Tuf
+      A7ONyLiPibFhrnT1AuCbiPDcM3vIpBLzhj8dCTM5MY65dgM2PcaGzVuo91TjsFrmvxHFRIvb
+      wmdjGRpdczUq3rVt/Ifv/hk//+HfEYgmafB4qPG20OL14qpwYqtuITXZgWZ2YlZgQ7MX3VbF
+      pvWtVLkq5o0uMR0hHJ7izKcz7frFfOdONm/bTjg4yZYtW/DUVjOfadmUBJeuD9HfdZmpWJaQ
+      fwh7/UZeefklhvq6FxXPQ4G4g9CET8QzQohsUvQP+YQQQvj8fiGEEFo6IQ598Htx+sI1IYQQ
+      06EJEYlnhBBCjI+PCyGESESnxKGDB8VYMDL7PSEywu+bmPNbCKFnxQ//8Z9ui1vLJMTRQx+L
+      K139N757Sx+aGBcpTQg9mxLHjxwSlzp7Z+O8yYRvQPz23XfFz3789+KTC9eFEEJ0XPpUHDl+
+      SgwP+4R2Q/PRxweF3+8XE6HpW/d7g8Bovzh46IhIZISYngqIQ4cOiY6eQSGEEH6ff1Z32713
+      nhQHjl6+Iy2jIqXduPt4RAyMjAk9mxKnjx8VJ89+JjKaLoQQYmy4TwRC0ze+pYtrF8+KI8eO
+      i2giLVLTIRGMxG/L37HhXvHRwUNiZHhYhKZTd31n3rK8I7034z106JAYHpucuTe/b1Y3ndKE
+      rqXFyWOHxWdXr8/ErWvi0rlT4uNDR0Q0kRGrBUWIFfAFysb5fz/7BY89/wobvNVLEIEgEJik
+      psa9BGHfjq+/kw8+ucibb72OWc6qPHSsjAFIJA8I8pklKWmkAUhKGmkAkpJGGoCkpJEGIClp
+      bjOA7s+O8/aHx2/8p/O3//OvCeZxrIwERpiKz8zavvf++7ddu/P/W/Ec4x//+Wf8269+xcB4
+      +N5SLpEUgdtcISKTIaJRhSwQ6b9ITLeT1mGg6zI9w2PUNW9iQ62FgycvgZZi4+NPceG9X+Iz
+      NvHc07uZnhrj448/xuxw8fSuJ9A1nZ6Oa3g3bMasx+keDLJhnZfIpJ8XvvIWLRUabx/4HU2v
+      vMiRo8cRJgd7d2yiz5+krbmW7u5uGuuqOH7mIo4KN7u2b+bYxwdJ6lDfvJFaWxqjuw1ndoLh
+      aSNl+hQXuwdx1zbyyKbV4awlWVruagJt31TH+c4xznWO8WR7A6Bx7movL7zwebounSE7PU7S
+      4uHFl57h4pmzbN26lac//zIbmutRzQ6ee/4FQoHR2fCqHBpHTl3l2tkTqM7K2c9PHP6Qdw68
+      TeP6dk4cPsiWXXvZWK3z6WCKqxdOIzJRunpHOXjoOHuffx59sp9AIoM/mGTfvhfp77rI+EAn
+      U0nITo/TMzLF8U8v8fyzz9LfdXl53Y8lDy13GUBVy6ME+88jVOON10MWk3HGIc1sNKIDdrsd
+      FBVFESjAzbk0q82GqoCq3HJEq2zcStTXwUAwRZvHMfv5rj17iEwnWL+uiUg4zIUzJ+gOpGms
+      tFJhMXDq5Gke3b2HcCjAiaNHSJvLsCg6NrsdAAXlLne3wOggR44coazSw/yeRBLJ7dxmAM7K
+      KsyqisuUpnHjE5RX1WBWLVQ54YMP/oC1woPR7KDSaQVUqqoqqW9r59Inv6dvZJyqqhm3hqrq
+      qtt+t68pJ+usnxNPDXa7gzf3f42DH33EU898jkh4mmwmA4rC7l2PcHkwhrfCzOd272Q6kSaT
+      TqIoJqqqKmfDXtO6kVMfvcPh05epdFrZuf0x0pogmcnM6+AlkdzJkrtCJKNBfvPuH/jia2/g
+      NM3voiyRrBTSF0hS0sh5AElJIw1AUtIsuQFoc7dYkUgeMAo2AN9AN9NpmBgbpW9wlHhkio6u
+      HjQtTVdHB5F4mmg0SnAquBTplUiKyryL4nNh0GJE05CIJTEAIxNJ1jeVc+rUNZ7YtY3RgT4m
+      fIPUrduCS9fRdR3Zz5bcC5lTf0v29N8ueF1d8ySWr//DfcVRsAHYbTai3Gra6EAmmcFiMZDM
+      ZNB0qKxykYgnUVUVIcTsjg4SSSFoau4GiqIoGI0FV+HbKPDbGhNxI4rup87jJpGB6nILw+Nh
+      tm/fwvBAP80tLeiZFJqmSXcEyQPJ9OHDaIEJoGADMLC2tXX2v7Ibv5u9M+4J3uaWGzIrEsmD
+      SuzwEVJXrwFyGFRS4kgDkJQ00gAkJY00AElJIw1AUtJIA5CUNPc3iyCRPCBkrryNHhld8LrB
+      uwNj4467PpcGIFkVZK4eQBs+s+B18+7vzWsAsgkkKWnkG0CyrIhkBC3QueB1xVKGwbNp2dKz
+      sAEIjROHj9PYvhGvx7NsCZKsbrRAJ4lf/umC1w3eHdhf/9GC14vNggYQGb7M9YEwg8lPeeOP
+      Xl62BEkePvTwCJmrB3JqLHu+t0ypKYwFDcBe3YR3bQSz1b6c6ZE8hOiRUdInf5BT89AZQDYZ
+      YWwyitAm+dyu7cuZJskDQupE7kptav8qasWaZUrN0rCgAURTKuu8bsz2xZ08KFl95HuqG7w7
+      Vq8BGPU4/aMh9uxsmvd6V8dVyqo86KkYWiZONGHGVmbGZDCgp6JkVQeta3OfWytZGG28A5GK
+      LnhdLW946Cvfg8CCBmC22ImFx+no7qOxoe6u67W1tXRfH6Ci2kWr18MnpwbZtflxhvt78Q8N
+      4N24HV2uCb5nUof+B/rI2QWvG3d+F9Ou7xYcbq4RGADLs/8JtWbjosLSdY1sNouu59/5I5vN
+      zn4nF0KIOdrcO7zO1earY7quz6td0ADe/+goRrOZF5/dM+/1WGwal7uaWpeD6/0hdu3aTP/1
+      Tmrqm6mqqiKdTqOoKqpcE3xPpJXc20iqqnpv62F953OHm40vOlxVNWA0Gsmq+cv3Zpj5tHPX
+      +RayJriQ/FLmaBe8U5MqSMei/PbDI3xp3zN3XW/wNs/+XVY5cx7vhg03nxxySeRyIptL986C
+      BvCV1/9kOdMhuQ9Sh/86rx/MgzoMudJIXyBJSSN9ge6T1Ikf5BwunDu1r4dHcrrsLrcfjEQa
+      wLKSuXpg0cYiWR5kE0hS0kgDkJQ00gAkJY3sA8yDNt5B6vBf59TItvrqQBrAPIhUNOe4umT1
+      IJtAkpJGGoCkpJEGIClpSqYPIDu2kvkomgHEJv30jE1RXl6JkRTxeIYNG9qKFfx9Izu2kvko
+      WhNoIpJgS/tmRDpB/7ULONwNxQpaIlkyivYGqHNX0NnZiauyhrZtO0mExxBVLfcU1lf/4uc5
+      r//lv3+BR9bJvYok90/RDMBSVkX7xqpiBSeRLAuKWMIFu7quo2kaap6lbXP1pa5d6fgfNu39
+      hrmkBgAzC5DnrsFEaKQzguD4KNYKN64y+4LaTDqNwajS3zfAmuYWLEa1KNqpYJCKyirUeZaR
+      3o82GAxSVTX/W3Cx2rvyS0sRnM5QVeFcMW08GkaxOLGZ717Pez/aYuTtfeUBy2AAd5IJDTOa
+      dZAJJ4EYba0LjxT19fZgVaCssRn/wBBtrQv3KQrR9vR0InQFoZpY19KCIccDpBDt1cufYTTb
+      sTrKaVpz904a96Sd9nF2MEW5MU2lu46aqvJl1/YP9KMKjWRaZ03TWhxWU1G0N/PWbF+Z/MpG
+      RpffAEAwPNBHMDxNQ+Na3JULJ1DPJrne1U1aMdOyrhWHZeEuSyHaUCiEy+VCz6bRFDOmHBsV
+      3Is2nU5jNpsXFhaiTUcJZe247IYV095MKwjS6UzRtSuWXyK7/DPBIpsiI4y43W7G/AsvDwSI
+      Tcexu6qpqihjdGSoaNpsKsHo6ChDXReYSORObyHaWDTM6Ogol6915BYWoBWqianxEUZHR+nu
+      6V0RrQGd4dFRRkd9DAyPFE17M29XLL+07PLPBCtGC3abldpaDwZj7j1ibBYjaaWS6gobY+Nj
+      RdMqioqnvhbhNBDNs6VNIVqj2UptbW3e+ypEW0h+LZV2qcthJfNr2Q1AZJJMTgaJRiOYbXd3
+      VOYST6SYnBxnalxQUV1bNG06naK/5zpaJkNTmwdYeFOlQrSx6BTXo1E0DNTmmaZYrLaQ/Foq
+      7ZKXg1i5/Fr2JpCeSZC+sTteIpG7TZFM3rqeSC6BVksRz+Teqq8wbXIm/jz3VYi2kPxaKu1S
+      l8NK5teyvwEMVic24xj1jS1kEgvvZgbgdJYRjIdY39ZCOBQqmrasrIx4VmVNg5t4nm0AC9E6
+      HU5sLg9uJfeeloVoC8mvpdIudTmsdeffSXCp8mvZ3wDZ2CTW6iYGuq8yMTWVUxuYCNLireFq
+      Rw+hcO7MLEQbjiUoM+n09XYznc6d3kK0GaGQCProH/HnFhagLSS/lkq71OXQOzCYUwdLl1+I
+      FSAWiwldy4jxwGROnZ5NiXgyI1LxqAhFYkXTxmMxoQkhQpPjIpnNndZCtLHYTLzj4+O5hfeg
+      XUx+LZV2qcthsWkVovj5tSILYpKJBEIxUuPO7TukGMzEomHMNicVZbmPaipEa7Pb8Q8P4XC5
+      seQZgChIazFwvfs60XgqtxBBLBrB7/cjlEXsnK1nmAzH8uYXgMWoMDgSwG6zFC1cxWAmnYxh
+      tjkReiavtpByCE5MLuq+rAaNYDRFTU1NXu1i6xes0Iowi5rl0/MX8Y1P5tXGw+NcudZFKBov
+      qrbK5eTIwUN09Q0USSsIjw+hmSvwLKaiWsxks1myWv699e3OciYGuzl7/gKTodzt2qHhUbRs
+      Gv9Y/mbYYsPVUnEuX7lCV1cXWT33NuRQWDn4hvvpHRjOq1ONZq5fu7AobSH1a2XeABkNs9mE
+      nknm1SpGC2ajgVg0UlRt76CP5z//PM3zHP5xr9qMasempAiF88WvYLWYcFV78FTnN5bw+Ahp
+      UzlNTU04bblnTJua1uAfGcBsd+XUaZkUPV2dGMtraGttzRmuwWJn8+ZN2CxGtEUYbCHlYLWZ
+      mR6byKvLphKomgHNmN8AC6lfK2IABoOBVHya9CKeJgZVJTQ1gdGcf6SgEK2WTnC9uxvFmL+p
+      sDitQpVdQTO7SCViecM0GxXOnjnD4IgvrzYYz1DusJCYjmCx5E5vf/8gWx59HLcr9xi4ajSx
+      prGJalc5RqMhb7ix8BSYrIhs7iYQFFYOqqKQ1vN74ygGA6ARi+Wv1IXUr5VZFC/AVenCuKiT
+      YwQulwvDok4tWby2wmklnsySf8By8VrF7CQ+NUr5jQNDcmKwsqbWjdG0sLPYTbwNa/BUu3BW
+      VObVeqor8fn8hCLTudOqzJyYYjQaGR3N7ZIC4HJVYhBZMOR+A81QSJmplLnz35eiKNgqKrDn
+      8ka8Ff2i69eyG0AmGaOjqweAUDicUxuZmqB/yAeKSjiUe0irEC0AKmSmpwjH87/SF6tVjWZi
+      0RDRaO52OkAmOg4ON9HQBIlkjk5zepqDh49w9rOrZLP502qy2il3OohGcuctgJZJEw6HKS/P
+      fxKoEAJdh0Qid7u+kHIYGx1ibCJEOJJ7uBR0ejuvMZ3S8taZQuoXrIABmKwO2jdvwGAw4MnT
+      oy+vdLN10wYURaG2Lnf7u7zSTevaRgwGAzXu/E9gu7OamvoGquz5nxKL1QqhY7Ha0bVs3jBN
+      ZR7KDGkymSypdI5mhdnJ3j07qPdUEorkNyyEQNd1zHmaNGgZAsEQQuiLCnc6HkMRWaKhCOkc
+      r8JCyqG2oZHWtY3U19XniV1l3cZ2XE4ztZ7cPhOF1K+ZkFeAcDC4qKYHwHgwROu6tfhH8vf+
+      p/JMfMylsspNtVUjEMv/VF2sVk+GEUYbwbydYLh08QKBwV5qW9txledor6enOf3ZVVAMlDsd
+      uQOdU6nVfAfXGUx4vV4aG5vw1udfX51KxIknU1hIMZ2nG1BIOUTjKZLx/AYoMjHC+WYib1BI
+      /VqRfYF0RcVTU4PZlL89We60cb1vkKpFjJYYzRZqamqwWPK3q69cOEskBTt2tebV9vZ0U15Z
+      Q3157kp1rddHubMCQ3n+N1BbWxtDg0NEJ8epd+Y4wM7s5Nmn5z+p8y5uVGqAwET+kZWbOB15
+      DAtwuz1EYzHs9W5ceV4uhZSDySBIi/z1QNeyVFR7qK7MPbcAhdWvFXkD1Dc0EAoGiedxVtJS
+      cbp7BxBalsXM2dV6aghOTpJM52+CmO1lPPrIFhYxqkYyEScSniKPLxyt69ahqCqx6dwdUACb
+      s4IN7VvZ0Lw0pzcuphlYCI6yCjweD5OB3C7OsPhyiIYmGfYF8p4HDGByerCJGJFF5O1i6xes
+      kAEExv2EInGieXxFDBY769va2LChDZHN//obGxsjlckSXEQhuaurCYfDLGIEDrvdRjaTRZBb
+      fL27E79vFIu9LH+gDxnxWJShwX7Kq/K3qxdbDmWuata3tc27fvdO0tEJRocmCObphMPi6xes
+      kAE4nWUoIrOoMfhsKk5XVzfCkP91WuZ0kkxM46yozqv1919mYMhHOJn76XNzpELNRAnGc2tb
+      N7Szdesj1FbnH1V5mAiMDjA4Ok4wksLtyt9cctjtJBMx7GW5J+Ng5i0wMZW/z2R2VuJwGrGo
+      +etBRVk5iAyqyZZXuyIG0NHRgdVqJZXO/VQPBXxE4mkUQNPyvyaj8SRbt7QTCQfzaps2PYnH
+      5cBhzt0Gqm1opHGNB5uzhnJr7uyyO5yUlZXhdORvpz5MuOsbcTmsWEwKkelFNFv7BrFabaTT
+      uX2ihvt70BXToppAKEbKK8qIBPOX7eRUiM1btpJJ5m8urYgBtG/ejEChsjL3EyKeSOCua6C+
+      tppEIv8MYJXTwokzF3DnGf6KTE0SiUyjoBFP5x8Fikam6O/tIZlZ7NjC6kJRVBoam9i69REq
+      nLmfqgaLnY2ta1EUcFXmnuBKJFN4m9eCWES+iixjfh+1DY15pd41dRw/egxnRZ6BEy2zErtC
+      wGBfLxXuGoaHBlm/fiNm08KDURNjo6Qx01Cbv1PX09ODUYUsRlpbmvPq9XScJFbs5oWfA5PB
+      ICZNw1ztxjrfBjaSu+i53o2ntpbBoSE2bdqy4FYyQuiMDA1SWVOHw5bbbSId9jGSdJAO+di4
+      cWNObX9vD7piRIgsretyj/KtyBugprqCjs7rWC1WsnmaNu7ahkVVfoA6t4vpZJam5qZF6VWz
+      PWflB5gc99HV2cX1nuss4mUhARxWI339g1itjpzDBoqi4m1am7fyA5jLatDCfsy2/AMMzc1e
+      ErEoNbXevNoVmQcYmwhRU12FEFns1sX4luQnHPDhCyexmxUmJiPU1xSnI7ph05aihFNKxFI6
+      FU4bWRSMRXrETkxMYHc6GJ8IQlOOnce1JBcudeOuKicQGKfckbvJtAJvAEF9fT3hwAjW8vxD
+      aoslEk9gEFmyukJiETOLkqVBy6Spq61haGiEhsbFvYkXg65lmZ6Os2HjptzCZJQkRhKp9G0L
+      9Bdi2fsAWnSUoUQFiclhTGZDzq0RJQ8ffb291Fba8CeMiGSM1nVrixJuf08XGV3BYLaxrjl/
+      02axLH8nWGh0d3TSsG4jiegU7iLPWEpWllQsQu/oBJvWeZkMJ3Hn2p/0AWBFRoEkkgcFeUqk
+      pKSRBiApaaQBSEoaaQCSkkYagKSkkQYgKWmkAUhKGmkAkpLmbgMQYlH7Vd4LhewWIJEsB7d5
+      gyZCPv71Nx/T4KkiLiy8+vILiw7o/PnzPP744zk1x08c50tf/NJdnx/89c/oS0KFUWHT9ufY
+      si7/fp0SSTG4zQCOHj3F69/4Bg6jwgcHfs20lubquavs3PEYZ06f5tH2Ng5+cpb4dJTnv/hV
+      ui6dZnLUR2W9l48+/IiJSJKnt63lo5OXENk0L778JS6cPMSIb5y9X3gVgFNHD/PoU8+iTfbQ
+      E3WyrbUWXTPx9bdew6Unefvdg3hM6znXOUg6rfPcky30Rhw82ubh5MkzuMtMDAam0RUj+/Zs
+      4p9/9j4NDdU43E3YslHad+wk2P0Z6ep2Qj1nmIpnUa0V7N312IpksOTB5rYm0HRGx3Fjn5AK
+      u4lYVicQmNliOhAIYLI5KXdYyEZHudI3QeelC+x+8RV279rFY489xovP7uHI4WPUramnxprm
+      xKVBLly8zMuvvk5N+cwC+M1tdRw+cZETZ6/RtvbmIWppPjzwK/7hn37BU88+x5Hjp2morUEJ
+      9zNCHYPXPmWi9zOUikZOn/2MmupK+q9dJamncXs3su/FLxAc7WMyEEAHEpFJptM65y5cpqqq
+      imtXLixbhkoeLm4zgPW1Ti4NTgKCgclp3BYV0EHoZDWNUx99QPNju3l2z3YAquqbqHTMVGxx
+      Y12n3Wah0l3Hxu3P8uQGD97mddhMt6Ipr99IPNBNRjVxa6dBM/u+8iq1ToVkOoPVYqamfg1P
+      vfQVmiosOEwqJzoDPLm5AbPNwRqvl6+8+pW7VvOogC4gm53Zj8ZeVo7X6+WrX7672SWRABi+
+      //3vf//mP7WNLXR+epSOzmtMxA1s37aF8aHrdPUO4q5vZMumFk6cOEM0nqG5pZUKh5nq6pkt
+      SBKRCa4PBXhqzw7OnT7N2Ng4NfWN2C3GWQ1AdXU1SV83Zet3U+e6tXtCpaeWLe1b6Lh0id27
+      nuDMmXOMjU/gbW6h0W1nKmVm7RoPtZV2zl3qYmIqTMvaRhTVTHXlzDK59S31HD56mmg8Tev6
+      jdQ5DVzrGSQUjdPkzbGKSFKyLOgO7R8Zprrei6nIA6XR4BiHz1zhS194IceJuxLJ8iDXA0hK
+      GjkRJilpltwAbnZIVyOr+d5WI/OV15IbQL7j6h9mVvO9rUbmK68V2ReoWGRTMfqH/AhVJRme
+      wmAvp6bCxlgohqfcRiiWonntOizF7smvMoIBP+OjI6jlNWST05RXuvFf62TT83uJjQ4zMDrO
+      ziefWOlkLgkPdc0wWuwoepqqajvOikZsJgM1dWswG2BiYhKTAYKh/DsPlzp2m63nu+wAAAaO
+      SURBVBXNXIZKlvbN7aQTMdbcOBK2xu2iyr16XVMeagOIBYaJZIwI3UomPY6mqAT8I4SmQlTX
+      eNCEwLCokyhLm4HBYWwWIy6Hnc7OTpxlFYyHpwj4A/jHpmhpXr1zKLcNgy7mdMNCicfj2O2r
+      a7vwm6zme1uNzFdet/UBysqW5mSTpQr3QWA139tq5M7yKrATrNHf049uNGMSKaIpqHXZGQsE
+      8TZ5GRz2UVPbgCrSpJKp2QPbJJIHlQL7AAbsdhPT8SRZYaTcbGQynqZ9cyPnz/exuX0z8cgU
+      nZ+dQrXnP/1bIllpCjOAbIpYSqBn0iTjUSYiUcx6mu6uAbzeSrq6u9FVM41tm5jyD+U5Uk4i
+      WXkKawIZLTQ3elHUGbsRAlRVQdd1VFWd/S2RPAwkr14tfCJMnTOsqNxw57xZ6WXllzxMjP+X
+      v3y45wEkkvtFGoCkpJEGIClpCuwDCAZ6ezA5KjCRJa0bqHSYGPQHWd/aSE93L3VN61C0FJls
+      hqrKPOe0SiQrTMGdYG9jIx3dA6giSUV1Pf6JKdY3lXPq1DWe2LWN0YE+JnyD1K3bgkvX0XV9
+      1frNa5q2au9tNTJfeRVoADrXrnWz+ZGtZNMpBnp7EUYjmWQGi8VAMpNB06GyykUinkRVVVRV
+      xWh8qL2uF8RgMKzae1uNzFdehZWermN32PCPBbCoGmVVbjyVDobHw2zfvoXhgX6aW1rQMyk0
+      TZMTYZKCSZ34QVHDM3h3YGzcseD1wgxANbGu9e6j55u9Mx523uaWG7HmP/lbIpmP9MniGoB5
+      9/dyGoAcBZKUNNIAJCWNNABJSSMNQFLSSAOQlDTSACQlzT27QpjJ3FgSaZOuEJKHlnt2hbBZ
+      jRiAkYmkdIWQPLDMrX9FdYXovd594xOkK4TkgWVu/SuqK0Sdx00iA9XlFukKIXlouS9XiJs7
+      rEhXCMnDihwFkpQ00gAkJY00AElJs2AfIDE1zE9/9jHrdrXz/PYnlzNNkgeM+C/+tKjhmdq/
+      imnLq0UN815Z0AAMRjMWKwQn5P76pY42fKao4Rm8C/vnLzcLNoEy05Nsff4V6hym5UyPRLKs
+      LGgAjtpWgtfPolrLb/vcN9DNdBoCYz5GfOPEI1N0dPWgaWm6OjqIxNNEo1GCU8ElT7xEcr8s
+      aADdF8/QNzpBMBS+7XODFiOahnRWo9xpwx+Y2RXi5MlrNK3fSMA/zEjfNaZi0kVA8uCzoAG0
+      tLYyPjaG2TS3CaQxORHC7/ejCEF3Vw+QpbfPR11dBX2918FgxVZeRTISlDPBkgeeBTvBZ89f
+      5tEntvPis3vmfGpg887nABBCp67BK3eHljzULFhbe/uHGO7r4MKVznmvK4qKqs5sDy13h5Y8
+      rCz4Bnhh3z5SGR3VZFnO9EgWgUhG0ALzP5juFUPNRpQ7BjxKgQUNoK6hcTnTISkALdBJ4pfF
+      nZyyvfajnPvnrFZkm0VS0kgDkJQ00gAkJY00AElJU/CC1o6zB3Ftep7I0GWm0+CpsBGJRCir
+      rGEqGqW8vBIjKeLxDBs2tC1FmiWSolH4rhBrGogCRqsDjwViAtq3rOPQ0R72PvcEg7199Pdc
+      omX7PnS5K8SSoOvakoS5XPeynHWiyLtCaIyOh8kk/Tj0LJEsuMusdHYO88gjTXR2duKqrKFt
+      204S4TGUqha5K8QSkFUN+UUFoqrLdy/LWSeKuysEBjY8uvPG33Wzn3oaZn5XV7vvNZ0SyYog
+      O8GSkkYagKSkkQYgKWlWZ+90BUid+EHRz7cq+4+Xixqe5G7kG0BS0kgDkJQ00gAkJc099wG6
+      Oq/iKHcjUlHpCiF5aLlnAyh3lhGYnMDusElXCGam3IvNQvkmXSHuLa4iuELMCVjoKIqKw2KU
+      rhCAtgTroRfKN+kKcW9xFcEV4hYN3mYavDN/10lXCMlDiuwES0oaaQCSkkYagKSkkQYgKWmK
+      1hXPxMN09o9SU9uAKtKkkim8Xm+xgpdIloSivQF8Y1Nsbt9MPDJF52enUO2VxQpaIlkyimYA
+      LoeZru5udNVMY9smpvxDcndoyQNP0ZpA5Z4GnO4Ha3fojz7t4+NzfUUN87/9+QtFDU+ysihC
+      iNkHdTQaLXoE8Xgcu91e9HAXYu4W7WNTMcanYkUN/5F1ntm/596bHh5Bj4wWNa65e3XOva+l
+      3hz3zm3us0PFPSNMLW9ArViz7HHdWReTV6/ebgBLQTQapaysLL+wSCznGQXLeW/LeV+rNa75
+      yuv/A4S32Z+jJCydAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Top 5 States' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
